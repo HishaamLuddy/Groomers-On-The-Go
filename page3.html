@@ -10,6 +10,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-image: url("image3.1.jpg");
       color: #252525;
+      font-weight: 500;
     }
 
     /* Header */
@@ -67,20 +68,17 @@
     .hamburger {
       display: none;
       flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 25px;
       cursor: pointer;
+      gap: 5px;
       z-index: 2000;
       position: relative;
     }
 
     .hamburger div {
-      width: 100%;
+      width: 25px;
       height: 3px;
-      background-color: #333;
+      background-color: #252525;
       border-radius: 2px;
-      transition: 0.3s;
     }
 
     .hamburger.active div:nth-child(1) {
@@ -154,16 +152,15 @@
     }
 
     /* Footer */
-    footer {
-      padding: 15px;
-      background: #f9dd3b;
-      font-size: 0.9rem;
-      width: 100%;
-      bottom: 0;
-      justify-content: center;
-      display: flex;
-      position: fixed;
-    }
+footer {
+  padding: 15px;
+  background: #f9dd3b;
+  font-size: x-small;
+  width: auto;
+  text-align: center;
+  margin-top: auto;
+}
+
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -186,8 +183,7 @@
     }
 
     @media (max-width: 480px) {
-      .header img { width: 70px; height: 70px; }
-      .table1, .table2, .table3, .table4 { width: 90%; height: 200px; }
+      .table1, .table2, .table3, .table4 { width: 80%; height: 200px; }
       .responsetime { font-size: 0.95rem; }
     }
 </style>
