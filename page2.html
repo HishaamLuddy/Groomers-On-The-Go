@@ -1,190 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Groomers on the Go | Services</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: url("image3.1.jpg");
-      color: #252525;
-      font-weight: 500;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Mobile grooming services for dogs and cats from Groomers on the Go — bathing, nail clipping, ear cleaning, and more." />
+<title>Groomers on the Go | Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #20281f;
+    --paper: #fbf7ee;
+    --pine: #1f3d34;
+    --pine-light: #2b544a;
+    --gold: #e8b93e;
+    --gold-dark: #c99b26;
+    --coral: #e2703a;
+    --card: #ffffff;
+    --line: rgba(31, 61, 52, 0.15);
+    --shadow: 0 10px 30px rgba(31, 61, 52, 0.12);
+  }
 
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 10px 5%;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1000;
-    }
+  * { box-sizing: border-box; }
 
-    .header img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+  html { scroll-behavior: smooth; }
 
-   /* ---------- Menu Buttons ---------- */
+  body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    margin: 0 0 0.5em;
+    line-height: 1.15;
+    color: var(--pine);
+  }
+
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* ---------- Header ---------- */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(251, 247, 238, 0.92);
+    backdrop-filter: blur(6px);
+    padding: 14px 5%;
+    box-shadow: 0 2px 12px rgba(31, 61, 52, 0.08);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+  }
+
+  .brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--pine);
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- Nav ---------- */
   .menu_buttons {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    background: #f9dd3b;
-    border-radius: 12px;
-    padding: 10px 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    gap: 8px;
+    align-items: center;
   }
 
   .menu_buttons a {
     text-decoration: none;
-    color: #252525;
+    color: var(--pine);
     font-weight: 600;
-    font-size: 1.05rem;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 
-  .menu_buttons a:hover {
-    background-color: rgb(0, 213, 255);
-    color: #111;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  .menu_buttons a:hover,
+  .menu_buttons a:focus-visible {
+    background: var(--pine);
+    color: var(--paper);
   }
 
-    /* Hamburger */
-    .hamburger {
+  .menu_buttons a:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Hamburger ---------- */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 2000;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 6px;
+  }
+
+  .hamburger div {
+    width: 24px;
+    height: 3px;
+    background-color: var(--pine);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active div:nth-child(2) { opacity: 0; }
+  .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  @media (max-width: 768px) {
+    .menu_buttons {
       display: none;
       flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      z-index: 2000;
-      position: relative;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #252525;
-      border-radius: 2px;
-    }
-
-    /* Active menu for mobile */
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .menu_buttons { 
-        display: none; 
-        flex-direction: column; 
-        text-align: center;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: rgba(255,255,255,0.95);
-        padding: 10px 0;
-      }
-      .menu_buttons.active { display: flex; }
-    }
-
-    /* ---------- Main Section with Overlay ---------- */
-    .main {
-      position: relative;
-      max-width: 700px;
-      margin: 50px auto;
-      background-image: url(040a0a1a7e8a124c9fbfc76914272c0600.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-    }
-
-    /* dark overlay to reduce background visibility */
-    .main::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* adjust opacity: 0.3–0.6 */
-      border-radius: 15px;
-      z-index: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--paper);
+      padding: 10px 5% 16px;
+      box-shadow: 0 8px 16px rgba(31, 61, 52, 0.1);
     }
+    .menu_buttons.show { display: flex; }
+    .hamburger { display: flex; }
+  }
 
-    .main * {
-      position: relative;
-      z-index: 1;
-    }
+  /* ---------- Page hero ---------- */
+  .page-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 5% 20px;
+    text-align: center;
+  }
 
-    .main h2 { 
-      text-align: center; 
-      color: #fff;
-      font-size: 2rem; 
-      font-weight: 800; 
-      letter-spacing: 1px;
-    }
+  .eyebrow {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 14px;
+  }
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-      font-weight: 600;
-      font-size: 1.3rem;
-      line-height: 2;
-    }
+  .page-hero h1 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-style: italic;
+    font-weight: 600;
+  }
 
-    li {
-      background-image: url("204-2040360_paw-print-wildcats-on-dog-paws-tattoos-and.png");
-      background-repeat: no-repeat;
-      background-size: 22px;
-      background-position: left center;
-      padding-left: 35px;
-      margin-bottom: 10px;
-    }
+  .page-hero p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 55ch;
+    margin: 0 auto;
+  }
 
-    p {
-      font-size: 1.1rem;
-      text-align: center;
-      font-weight: 600;
-      margin-top: 30px;
-    }
+  /* ---------- Services grid ---------- */
+  .services {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 30px auto 0;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
 
-footer {
-  padding: 15px;
-  background: #f9dd3b;
-  font-size: x-small;
-  width:auto;
-  text-align: center;
-  margin-top: auto;
-}
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 26px 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
+  .service-card .icon {
+    width: 34px;
+    height: 34px;
+  }
 
-    
-  </style>
+  .service-card h3 {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .service-card .price {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--gold-dark);
+    white-space: nowrap;
+  }
+
+  .service-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #3c4438;
+  }
+
+  /* ---------- Note callout ---------- */
+  .note {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 36px auto 70px;
+    padding: 18px 24px;
+    background: rgba(232, 185, 62, 0.16);
+    border: 1px solid rgba(232, 185, 62, 0.4);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .note strong { color: var(--pine); }
+
+  .cta-row {
+    text-align: center;
+    margin: -10px auto 70px;
+  }
+
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 13px 26px;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    box-shadow: 0 6px 16px rgba(201, 155, 38, 0.35);
+  }
+
+  .btn-primary:hover, .btn-primary:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(201, 155, 38, 0.45);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    position: relative;
+    z-index: 1;
+    background: var(--pine);
+    color: var(--paper);
+    margin-top: auto;
+    padding: 36px 5% 22px;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto 20px;
+  }
+
+  .footer-inner h3 {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .footer-inner p, .footer-inner a {
+    font-size: 0.9rem;
+    color: rgba(251, 247, 238, 0.85);
+    text-decoration: none;
+    line-height: 1.8;
+  }
+
+  .footer-inner a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(251, 247, 238, 0.6);
+    border-top: 1px solid rgba(251, 247, 238, 0.15);
+    padding-top: 16px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn, .header img { transition: none; }
+  }
+</style>
 </head>
 
 <body>
-  <header class="header">
-    <img src="Logo.jpg" alt="Groomers on the Go Logo">
 
-    <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <img src="Logo.jpg" alt="Groomers on the Go Logo">
+      <span class="brand-name">Groomers on the Go</span>
     </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
 
     <nav class="menu_buttons" id="navMenu">
       <a href="index.html">Home</a>
@@ -193,32 +356,93 @@ footer {
     </nav>
   </header>
 
-  <section class="main">
-    <h2>Our Grooming Services</h2>
-    <ul>
-      <li>Bathing + Drying - R0</li>
-      <li>Nail Clipping - R0</li>
-      <li>Ear Cleaning - R0</li>
-      <li>Dipping (Ticks & Fleas) - R0</li>
-      <li>Disinfection of Habitat - R0</li>
-      <li>Excess Fur Removal - R0</li>
-    </ul>
-
-    <p>PLEASE NOTE: Prices may vary depending on distance traveled and condition of pet.</p>
+  <!-- Page hero -->
+  <section class="page-hero">
+    <span class="eyebrow">Services</span>
+    <h1>Everything your pet needs, in one visit.</h1>
+    <p>
+      Every appointment is built around your pet — a quick refresh or the full
+      treatment, all delivered at your door.
+    </p>
   </section>
 
+  <!-- Services grid -->
+  <section class="services">
+    <div class="service-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M7 12a5 5 0 0110 0v3a5 5 0 01-10 0v-3zM4 12h1M19 12h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Bathing &amp; Drying <span class="price">From R___</span></h3>
+      <p>A full wash with pet-safe shampoo, followed by a thorough towel and blow dry.</p>
+    </div>
+    <div class="service-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M6 3v18M18 3v18M6 12h12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Nail Clipping <span class="price">From R___</span></h3>
+      <p>Careful, precise trimming to keep nails at a safe, comfortable length.</p>
+    </div>
+    <div class="service-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M12 3a5 5 0 015 5c0 3-2 5-2 9a3 3 0 01-6 0c0-4-2-6-2-9a5 5 0 015-5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Ear Cleaning <span class="price">From R___</span></h3>
+      <p>Gentle cleaning to help prevent buildup, irritation, and infection.</p>
+    </div>
+    <div class="service-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M12 2C9 6 5 9 5 13a7 7 0 0014 0c0-4-4-7-7-11z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Tick &amp; Flea Dip <span class="price">From R___</span></h3>
+      <p>A protective dip treatment to clear and guard against ticks and fleas.</p>
+    </div>
+    <div class="service-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M4 4h16v16H4z" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9h16M9 4v16" stroke-linecap="round"/></svg>
+      <h3>Habitat Disinfection <span class="price">From R___</span></h3>
+      <p>Cleaning and disinfecting of bedding or living space during the visit.</p>
+    </div>
+    <div class="service-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M4 20c4-8 12-8 16-16M8 12c2-2 4-2 6 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Excess Fur Removal <span class="price">From R___</span></h3>
+      <p>De-shedding and trimming to keep your pet comfortable, especially in shedding season.</p>
+    </div>
+  </section>
+
+  <div class="cta-row">
+    <a href="page3.html" class="btn btn-primary">Book an appointment</a>
+  </div>
+
+  <p class="note">
+    <strong>Please note:</strong> prices may vary depending on distance travelled and the condition of your pet.
+  </p>
+
+  <!-- Footer -->
   <footer>
-    &copy; 2025 Groomers on the Go. All Rights Reserved.
+    <div class="footer-inner">
+      <div>
+        <h3>Groomers on the Go</h3>
+        <p>Mobile grooming for dogs and cats,<br>brought to your doorstep.</p>
+      </div>
+      <div>
+        <h3>Navigate</h3>
+        <p><a href="index.html">Home</a><br>
+        <a href="page2.html">Services</a><br>
+        <a href="page3.html">Contact Us</a></p>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <p>[Phone number]<br>[Email address]<br>Serving [your service area]</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> Groomers on the Go. All Rights Reserved.
+    </div>
   </footer>
 
+  <!-- JavaScript -->
   <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
+      const isActive = hamburger.classList.toggle('active');
+      navMenu.classList.toggle('show');
+      hamburger.setAttribute('aria-expanded', isActive);
     });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
