@@ -3,161 +3,258 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Groomers on the Go | Home</title>
+<meta name="description" content="Groomers on the Go brings professional, stress-free mobile grooming for dogs and cats straight to your door." />
+<title>Groomers on the Go | Mobile Pet Grooming</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ---------- General Styles ---------- */
+  :root {
+    --ink: #20281f;
+    --paper: #fbf7ee;
+    --pine: #1f3d34;
+    --pine-light: #2b544a;
+    --gold: #e8b93e;
+    --gold-dark: #c99b26;
+    --coral: #e2703a;
+    --card: #ffffff;
+    --line: rgba(31, 61, 52, 0.15);
+    --shadow: 0 10px 30px rgba(31, 61, 52, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: url("image3.1.jpg");
-      color: #252525;
-      font-weight: 500;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh; }
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
 
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    margin: 0 0 0.5em;
+    line-height: 1.15;
+    color: var(--pine);
+  }
 
-  
+  a { color: inherit; }
 
-  /* ---------- Header & Logo ---------- */
+  img { max-width: 100%; display: block; }
+
+  /* ---------- Signature route line ---------- */
+  .route-line {
+    position: absolute;
+    top: 520px;
+    left: 0;
+    width: 100%;
+    height: 1400px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.35;
+  }
+
+  /* ---------- Header ---------- */
   .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 10px 5%;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(251, 247, 238, 0.92);
+    backdrop-filter: blur(6px);
+    padding: 14px 5%;
+    box-shadow: 0 2px 12px rgba(31, 61, 52, 0.08);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
   .header img {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    transition: transform 0.3s;
+    border: 2px solid var(--gold);
   }
 
-  .header img:hover {
-    transform: scale(1.05);
+  .brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--pine);
+    letter-spacing: 0.01em;
   }
 
-  /* ---------- Menu Buttons ---------- */
+  /* ---------- Nav ---------- */
   .menu_buttons {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    background: #f9dd3b;
-    border-radius: 12px;
-    padding: 10px 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    gap: 8px;
+    align-items: center;
   }
 
   .menu_buttons a {
     text-decoration: none;
-    color: #252525;
+    color: var(--pine);
     font-weight: 600;
-    font-size: 1.05rem;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 
-  .menu_buttons a:hover {
-    background-color: rgb(0, 213, 255);
-    color: #111;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  .menu_buttons a:hover,
+  .menu_buttons a:focus-visible {
+    background: var(--pine);
+    color: var(--paper);
   }
 
-  /* ---------- Hamburger Button ---------- */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      z-index: 2000;
-      position: relative;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #252525;
-      border-radius: 2px;
-    }
-
-  .hamburger.active div:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+  .menu_buttons a:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
   }
 
-  .hamburger.active div:nth-child(2) {
-    opacity: 0;
+  /* ---------- Hamburger ---------- */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 2000;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 6px;
   }
 
-  .hamburger.active div:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+  .hamburger div {
+    width: 24px;
+    height: 3px;
+    background-color: var(--pine);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
   }
 
-  /* ---------- Main Section ---------- */
+  .hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active div:nth-child(2) { opacity: 0; }
+  .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* ---------- Hero ---------- */
   .main {
+    position: relative;
+    z-index: 1;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 50px 5%;
+    padding: 70px 5% 40px;
     gap: 50px;
-    
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-.text-content {
-  flex: 1 1 350px;
-  max-width: 500px;
-  min-height: 300px; /* 👈 ensures the box keeps its original height */
-  background-image: url(dog-or-cat-paw-print-graphic-illustration-cute-animal-element-fo-n-akkash.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border-radius: 15px;
-  padding: 25px;
-  color: #000;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgb(0, 213, 255);
-  animation: shadowPulse 3s infinite alternate;
-}
+  .text-content {
+    flex: 1 1 380px;
+    max-width: 520px;
+  }
 
-/* keeps background but adds a translucent layer */
-.text-content::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.461); /* adjust opacity as needed */
-  border-radius: 15px;
-  z-index: 0;
-}
+  .eyebrow {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 14px;
+  }
 
-.text-content h2,
-.text-content p {
-  position: relative;
-  z-index: 1;
-}
+  .text-content h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .text-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 46ch;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 13px 26px;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    box-shadow: 0 6px 16px rgba(201, 155, 38, 0.35);
+  }
+
+  .btn-primary:hover, .btn-primary:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(201, 155, 38, 0.45);
+  }
+
+  .btn-outline {
+    border: 2px solid var(--pine);
+    color: var(--pine);
+  }
+
+  .btn-outline:hover, .btn-outline:focus-visible {
+    background: var(--pine);
+    color: var(--paper);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 3px;
+  }
 
   /* ---------- Slideshow ---------- */
   .slideshow-container {
     position: relative;
     width: 100%;
-    max-width: 350px;
-    height: 400px;
+    max-width: 360px;
+    height: 420px;
     overflow: hidden;
-    border: 5px solid #f9dd3b;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    flex: 1 1 320px;
+  }
+
+  .slideshow-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.6);
+    pointer-events: none;
   }
 
   .slideshow-container img {
@@ -166,13 +263,7 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transform: scale(1);
     animation: fadeInOut 15s infinite;
-    transition: transform 0.5s ease;
-  }
-
-  .slideshow-container img:hover {
-    transform: scale(1.05);
   }
 
   .slideshow-container img:nth-child(1) { animation-delay: 0s; }
@@ -186,66 +277,164 @@
     25%, 100% { opacity: 0; }
   }
 
-
-/* Keyframes to transition shadow colors */
-@keyframes shadowPulse {
-  0% {
-    box-shadow: 0 6px 20px rgb(8, 84, 99); /* yellowish */
+  /* ---------- Feature strip ---------- */
+  .features {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
   }
-  100% {
-    box-shadow: 0 6px 20px rgb(0, 213, 255); /* pinkish */
-  }
-}
 
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .feature-card .icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 14px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #3c4438;
+  }
+
+  /* ---------- Service teaser ---------- */
+  .teaser {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 0 5%;
+    text-align: center;
+  }
+
+  .teaser h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-style: italic;
+  }
+
+  .teaser p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0 auto 24px;
+  }
 
   /* ---------- Footer ---------- */
-footer {
-  padding: 15px;
-  background: #f9dd3b;
-  font-size: x-small;
-  width:auto;
-  text-align: center;
-  margin-top: auto;
-}
-
-
-  /* ---------- Responsive Adjustments ---------- */
-  @media (max-width: 768px) {   
-    .slideshow-container { max-width: 300px; height: 350px; }
-    .menu_buttons.show { display: flex; }
-    .hamburger { display: flex; }
-    .menu_buttons { 
-        display: none; 
-        flex-direction: column; 
-        text-align: center;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: rgba(255,255,255,0.95);
-        padding: 10px 0;
-      }
-    }
-
-  @media (max-width: 480px) {
-    .text-content { width: 100%; }
-    .slideshow-container { max-width: 280px; height: 220px; }
+  footer {
+    position: relative;
+    z-index: 1;
+    background: var(--pine);
+    color: var(--paper);
+    margin-top: auto;
+    padding: 36px 5% 22px;
   }
 
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto 20px;
+  }
+
+  .footer-inner h3 {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .footer-inner p, .footer-inner a {
+    font-size: 0.9rem;
+    color: rgba(251, 247, 238, 0.85);
+    text-decoration: none;
+    line-height: 1.8;
+  }
+
+  .footer-inner a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(251, 247, 238, 0.6);
+    border-top: 1px solid rgba(251, 247, 238, 0.15);
+    padding-top: 16px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 768px) {
+    .menu_buttons {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--paper);
+      padding: 10px 5% 16px;
+      box-shadow: 0 8px 16px rgba(31, 61, 52, 0.1);
+    }
+    .menu_buttons.show { display: flex; }
+    .hamburger { display: flex; }
+    .slideshow-container { max-width: 300px; height: 340px; }
+  }
+
+  @media (max-width: 480px) {
+    .main { padding-top: 40px; gap: 34px; }
+    .slideshow-container { max-width: 280px; height: 260px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .slideshow-container img { animation: none; opacity: 1; }
+    .slideshow-container img:not(:first-child) { display: none; }
+    .btn, .header img { transition: none; }
+  }
 </style>
 </head>
 
 <body>
+
+  <!-- Signature route line: a dashed path winding behind the page, echoing a mobile groomer's route to your door -->
+  <svg class="route-line" viewBox="0 0 400 1400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M40,0 C220,120 40,260 200,380 C360,500 60,620 220,760 C380,900 80,1020 200,1160 C300,1260 120,1340 180,1400"
+          fill="none" stroke="#1F3D34" stroke-width="2" stroke-dasharray="2 14" stroke-linecap="round" />
+    <circle cx="40" cy="0" r="5" fill="#E8B93E" />
+    <circle cx="200" cy="380" r="5" fill="#E2703A" />
+    <circle cx="220" cy="760" r="5" fill="#E8B93E" />
+    <circle cx="200" cy="1160" r="5" fill="#E2703A" />
+  </svg>
+
   <!-- Header -->
   <header class="header">
-    <img src="Logo.jpg" alt="Groomers on the Go Logo">
-
-    <!-- Hamburger Icon -->
-    <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="brand">
+      <img src="Logo.jpg" alt="Groomers on the Go Logo">
+      <span class="brand-name">Groomers on the Go</span>
     </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
 
     <nav class="menu_buttons" id="navMenu">
       <a href="index.html">Home</a>
@@ -254,42 +443,96 @@ footer {
     </nav>
   </header>
 
-  <!-- Main Content -->
+  <!-- Hero -->
   <section class="main">
     <div class="text-content">
-      <h2>Groomers On The Go</h2>
+      <span class="eyebrow">Mobile Pet Grooming</span>
+      <h1>Grooming that comes to you.</h1>
       <p>
-        Groomers on the Go is a mobile pet grooming service that caters to both cats and dogs,
-        bringing professional grooming directly to your doorstep. We offer convenient, stress-free
-        grooming for your pets, ensuring they look and feel their best without the hassle of traveling.
-        Whether your furry friend needs a quick trim or a full grooming session, Groomers on the Go delivers
-        top-notch care tailored to their needs.
+        No carrier, no waiting room, no stress. We bring the tub, the table, and
+        trained hands right to your driveway — full-service grooming for dogs and
+        cats, tailored to your pet and done in the place they feel most comfortable: home.
       </p>
+      <div class="cta-row">
+        <a href="page3.html" class="btn btn-primary">Book an appointment</a>
+        <a href="page2.html" class="btn btn-outline">See our services</a>
+      </div>
     </div>
 
     <div class="slideshow-container">
-      <img src="pic1.jpg" alt="Grooming 1">
-      <img src="pic2.jpg" alt="Grooming 2">
-      <img src="pic3.jpg" alt="Grooming 3">
-      <img src="pic4.jpg" alt="Grooming 4">
-      <img src="pic5.jpg" alt="Grooming 5">
+      <img src="pic1.jpg" alt="Dog being groomed on location">
+      <img src="pic2.jpg" alt="Freshly groomed dog">
+      <img src="pic3.jpg" alt="Cat receiving a gentle grooming session">
+      <img src="pic4.jpg" alt="Mobile grooming van setup">
+      <img src="pic5.jpg" alt="Groomer working with a happy pet">
     </div>
+  </section>
+
+  <!-- Feature strip -->
+  <section class="features">
+    <div class="feature-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M3 11l9-7 9 7M5 10v9h14v-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>We come to your door</h3>
+      <p>Skip the stressful car ride and crowded lobby — your pet gets groomed steps from home, on your schedule.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5 8.5 5 10.5 6.5 12 8.5 13.5 6.5 15.5 5 17.5 5 21 5 23.5 8.5 21.5 12.5 19 16.65 12 21 12 21z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Cats and dogs, one visit</h3>
+      <p>Fully equipped for both species, with tools and handling sized and paced to fit each pet.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#1F3D34" stroke-width="1.6"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Groomers you can trust</h3>
+      <p>Experienced, background-checked groomers who treat every pet with the same care they'd want for their own.</p>
+    </div>
+  </section>
+
+  <!-- Service teaser -->
+  <section class="teaser">
+    <h2>From a quick trim to the full works.</h2>
+    <p>
+      Whether your pet needs a fast touch-up or a complete grooming session — bath,
+      cut, nails, and ears — we tailor every visit to what they actually need.
+    </p>
+    <a href="page2.html" class="btn btn-outline">View all services</a>
   </section>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Groomers on the Go. All Rights Reserved.
+    <div class="footer-inner">
+      <div>
+        <h3>Groomers on the Go</h3>
+        <p>Mobile grooming for dogs and cats,<br>brought to your doorstep.</p>
+      </div>
+      <div>
+        <h3>Navigate</h3>
+        <p><a href="index.html">Home</a><br>
+        <a href="page2.html">Services</a><br>
+        <a href="page3.html">Contact Us</a></p>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <p>[Phone number]<br>[Email address]<br>Serving [your service area]</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> Groomers on the Go. All Rights Reserved.
+    </div>
   </footer>
 
-  <!-- JavaScript for Hamburger -->
+  <!-- JavaScript -->
   <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
+      const isActive = hamburger.classList.toggle('active');
       navMenu.classList.toggle('show');
+      hamburger.setAttribute('aria-expanded', isActive);
     });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
